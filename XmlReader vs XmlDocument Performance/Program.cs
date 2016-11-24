@@ -16,11 +16,10 @@ namespace XmlReader_vs_XmlDocument_Performance
             // It is available at https://archive.org/details/stackexchange under the 
             // Attribution -ShareAlike Creative Commons license: http://creativecommons.org/licenses/by-sa/3.0/
             string filePath = "../../Users.xml";
-
+            
             // Run the performance test on the XmlReaderTest method
             double xmlReaderTime = RunPerformanceTest(filePath, XmlReaderTest);
             Console.WriteLine("XmlReaderTest method averaged {0} seconds", xmlReaderTime);
-
             // Run the performance test on the XmlDocumentTest method
             double xmlDocumentTime = RunPerformanceTest(filePath, XmlDocumentTest);
             Console.WriteLine("XmlDocumentTest method averaged {0} seconds", xmlDocumentTime);
@@ -85,7 +84,7 @@ namespace XmlReader_vs_XmlDocument_Performance
             XmlDocument doc = new XmlDocument();
             doc.Load(filePath);
 
-            var test = doc.GetElementsByTagName("row").Cast<XmlNode>().Where(x => x.Attributes["Reputation"].InnerText == "1").Select(x => x.Attributes["Id"].InnerText).ToList();
+            singleRepRowIds = doc.GetElementsByTagName("row").Cast<XmlNode>().Where(x => x.Attributes["Reputation"].InnerText == "1").Select(x => x.Attributes["Id"].InnerText).ToList();
         }
     }
 }
